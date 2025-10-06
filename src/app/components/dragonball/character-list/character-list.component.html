@@ -1,0 +1,23 @@
+<h3>{{ listName() }}</h3>
+
+<ul>
+    @for (character of characters(); track character.id; let idx = $index) {
+
+    @if (character.power > 5000) {
+    <li>
+        <span>{{idx + 1}} {{character.name}} </span>
+        <strong [class.text-danger]="character.power > 9000">
+            ({{character.power}})
+        </strong>
+    </li>
+    }
+
+    @if (character.power <= 5000) { <li>
+        <span class="text-primary">{{idx + 1}} {{character.name}} </span>
+        <strong>
+            ({{character.power}})
+        </strong>
+        </li>
+        }
+        }
+</ul>

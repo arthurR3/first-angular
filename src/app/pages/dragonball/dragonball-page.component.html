@@ -1,0 +1,55 @@
+<h3>DragonBall Page</h3>
+<hr />
+
+<section class="row px-4">
+    <div class="col-12 col-sm-6">
+        <h5>Agregar {{ name() }}</h5>
+        <input 
+            class="form-control" 
+            type="text" 
+            placeholder="Nombre" 
+            [value]="name()"
+            
+            (change)="name.set(txtName.value)"
+            #txtName
+        />
+        <!-- (input)="name.set(txtName.value)" -->
+         <h5>Agregar {{ power() }}</h5>
+        <input 
+            class="form-control mt-2" 
+            type="number" 
+            placeholder="Poder" 
+            [value]="power()"
+            
+            (input)="power.set(+txtPower.value)"
+            #txtPower
+            />
+            <!-- (change)="power.set(+txtPower.value)" -->
+        <button (click)="addCharacter()" class="mt-2 btn btn-primary">Agregar</button>
+    </div>
+
+    <div class="col-12 col-sm-6">
+        <h3>Listado</h3>
+        <ul>
+            @for (character of characters(); track character.id; let idx = $index) {
+
+            @if (character.power > 5000) {
+            <li>
+                <span>{{idx + 1}} {{character.name}} </span>
+                <strong [class.text-danger]="character.power > 9000">
+                    ({{character.power}})
+                </strong>
+            </li>
+            }
+
+            @if (character.power <= 5000) { <li>
+                <span class="text-primary">{{idx + 1}} {{character.name}} </span>
+                <strong>
+                    ({{character.power}})
+                </strong>
+                </li>
+                }
+                }
+        </ul>
+    </div>
+</section>
